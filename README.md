@@ -3,3 +3,5 @@
 1. sessionStorage
 2. localStorage
 **3. vuex**
+   我文件放反了前后端hhhh
+   
