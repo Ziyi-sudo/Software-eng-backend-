@@ -18,6 +18,7 @@
       <el-button type="warning" @click="getRoute">路径规划</el-button>
       <el-button type="danger" @click="addMarker">添加地标</el-button>
       <el-button type="danger" @click="clearMarkers">清空地标</el-button>
+      <el-button type="success" @click="playVideo">播放视频</el-button>
       <el-button type="primary" icon="el-icon-arrow-left" @click="goHome">返回首页</el-button>
     </div>
   </div>
@@ -89,6 +90,25 @@ export default {
       } else {
         alert(`坐标: ${e.lngLat.lng}, ${e.lngLat.lat}`);
       }
+    },
+
+    // ✅ 播放视频（修正路径）
+    playVideo() {
+      if (!this.map2D) return;
+
+      const videoUrl = "/static/videos/Beijing.mp4"; // 访问 public 目录下的视频
+
+      new mapboxgl.Popup({ closeOnClick: true })
+          .setLngLat([116.4074, 39.9042]) // 这里可以改成你想要的地图坐标
+          .setHTML(`
+          <div style="width: 480px; text-align: center;">
+            <video width="320" height="240" controls>
+              <source src="${videoUrl}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        `)
+          .addTo(this.map2D);
     },
 
     // ✅ 测距功能
@@ -174,6 +194,7 @@ export default {
     getRoute() {
       alert("路径规划功能开发中...");
     },
+
 
     // ✅ 返回首页
     goHome() {
