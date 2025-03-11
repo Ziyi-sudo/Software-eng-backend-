@@ -72,6 +72,13 @@ const router = new Router({
             component: () => import('./views/map/Map3D.vue'),
             meta: { title: "三维地图展示", icon: "fa fa-globe" }
         },
+        // ✅ 新增 二三维联动展示 (Merge)
+        {
+            path: '/map/merge/',
+            name: 'Merge',
+            component: () => import('./views/map/Merge.vue'),
+            meta: { title: "二三维联动", icon: "fa fa-map-o" }
+        },
 
 
         {

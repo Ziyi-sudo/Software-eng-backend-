@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
 import {
     Button,
@@ -49,11 +49,15 @@ import {
     DatePicker,
     RadioGroup,
     CollapseItem,
-    Switch
-} from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+    Switch,
+} from "element-ui";
 
-Vue.prototype.$ELEMENT = {size: 'small', zIndex: 3000};
+import "element-ui/lib/theme-chalk/index.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+
+// ✅ 挂载 Element UI 组件
+Vue.prototype.$ELEMENT = { size: "small", zIndex: 3000 };
 Vue.use(Switch);
 Vue.use(CollapseItem);
 Vue.use(Radio);
@@ -98,16 +102,19 @@ Vue.use(Icon);
 Vue.use(Select);
 Vue.use(Form);
 Vue.use(Tag);
-Vue.prototype.$alert = MessageBox.alert
-Vue.prototype.$confirm = MessageBox.confirm
 
-import {postRequest} from "./utils/api";
-import {postKeyValueRequest} from "./utils/api";
-import {putRequest} from "./utils/api";
-import {deleteRequest} from "./utils/api";
-import {getRequest} from "./utils/api";
-import {initMenu} from "./utils/menus";
-import 'font-awesome/css/font-awesome.min.css'
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$confirm = MessageBox.confirm;
+
+// ✅ API 请求封装
+import { postRequest } from "./utils/api";
+import { postKeyValueRequest } from "./utils/api";
+import { putRequest } from "./utils/api";
+import { deleteRequest } from "./utils/api";
+import { getRequest } from "./utils/api";
+import { initMenu } from "./utils/menus";
+
+import "font-awesome/css/font-awesome.min.css";
 
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.postKeyValueRequest = postKeyValueRequest;
@@ -115,23 +122,25 @@ Vue.prototype.putRequest = putRequest;
 Vue.prototype.deleteRequest = deleteRequest;
 Vue.prototype.getRequest = getRequest;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
+// ✅ 路由守卫
 router.beforeEach((to, from, next) => {
-    if (to.path == '/') {
+    if (to.path === "/") {
         next();
     } else {
         if (window.sessionStorage.getItem("user")) {
-            initMenu(router, store);  // ✅ 确保菜单初始化
+            initMenu(router, store); // ✅ 确保菜单初始化
             next();
         } else {
-            next('/?redirect=' + to.path);
+            next("/?redirect=" + to.path);
         }
     }
-})
+});
 
+// ✅ 创建 Vue 实例
 new Vue({
     router,
     store,
-    render: h => h(App)
-}).$mount('#app')
+    render: (h) => h(App),
+}).$mount("#app");

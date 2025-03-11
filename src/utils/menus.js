@@ -63,6 +63,8 @@ export const formatRoutes = (routes) => {
                         require(['../views/map/Map2D.vue'], resolve);  // ✅ 让 `Map2D.vue` 正确解析
                     } else if (component === "Home" && name === "三维地图展示") {
                         require(['../views/map/Map3D.vue'], resolve);  // ✅ 让 `Map3D.vue` 正确解析
+                    }  else if (component === "Home" && name === "二三维联动") {
+                        require(['../views/map/Merge.vue'], resolve);  // ✅ 让 `Merge.vue` 正确解析
                     }  else if (component.startsWith("Home")) {
                         require(['../views/' + component + '.vue'], resolve);
                     } else if (component.startsWith("Emp")) {
